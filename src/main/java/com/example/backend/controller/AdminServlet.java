@@ -8,7 +8,7 @@ import java.util.Map;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import com.example.backend.dto.AdminDto;
-import com.example.backend.model.Admin;
+import com.example.backend.model.AdminModel;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
@@ -19,6 +19,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/api/v1/admin")
 public class AdminServlet extends HttpServlet {
+
+    private 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,5 +44,10 @@ public class AdminServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void init() throws ServletException {
+       
     }
 }
