@@ -32,23 +32,6 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // try {
-        // AdminDto admin = mapper.readValue(req.getInputStream(), AdminDto.class);
-
-        // Connection connection = dataSource.getConnection();
-        // PreparedStatement statement = connection.prepareStatement(
-        // "INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-
-        // statement.setString(1, admin.getName());
-        // statement.setString(2, admin.getEmail());
-        // statement.setString(3, admin.getPassword());
-
-        // int rows = statement.executeUpdate();
-        // resp.setContentType("application/json");
-        // mapper.writeValue(resp.getWriter(), Map.of("Admin Save Success !", rows));
-        // } catch (Exception e) {
-        // e.printStackTrace();
-        // }
         try {
             ObjectMapper mapper = new ObjectMapper();
             BasicDataSource dataSource = (BasicDataSource) getServletContext().getAttribute("dataSource");

@@ -18,11 +18,8 @@ public class AdminModel {
             HttpServletResponse resp, HttpServletRequest req) {
 
         ObjectMapper mapper = new ObjectMapper();
-        // dataSource = (BasicDataSource)
-        // getServletContext().getAttribute("dataSource");
 
         try {
-            // AdminDto admin = mapper.readValue(req.getInputStream(), AdminDto.class);
 
             Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(
