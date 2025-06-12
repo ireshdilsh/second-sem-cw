@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import com.example.backend.dto.AdminDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpServletRequest;
