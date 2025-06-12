@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -6,7 +6,7 @@
     font-size: 13px;
 }
 
-.form{
+.form {
     margin-top: 160px;
     display: flex;
     flex-direction: column;
@@ -14,21 +14,21 @@
     align-items: center;
 }
 
-.form h1{
+.form h1 {
     margin-bottom: 25px;
 }
 
-.form input{
+.form input {
     width: 300px;
     height: 40px;
 }
 
-.form button{
+.form button {
     height: 40px;
     width: 300px;
 }
 
-.form .lst{
+.form .lst {
     margin-top: 10px;
     display: flex;
     gap: 50px;
