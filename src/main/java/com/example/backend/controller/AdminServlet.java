@@ -15,7 +15,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/api/v1/admin")
 public class AdminServlet extends HttpServlet {
@@ -30,7 +29,7 @@ public class AdminServlet extends HttpServlet {
 
             Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO admins (name, email, password) VALUES (?, ?, ?)");
+                    "INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
 
             statement.setString(1, admin.getName());
             statement.setString(2, admin.getEmail());
@@ -42,5 +41,5 @@ public class AdminServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }   
+    }
 }
