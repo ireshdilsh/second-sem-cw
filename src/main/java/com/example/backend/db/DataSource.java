@@ -34,25 +34,4 @@ public class DataSource implements ServletContextListener{
 
         context.setAttribute("dataSource", ds);
     }
-
-    // @Override
-    // public default void contextDestroyed(jakarta.servlet.ServletContextEvent sce) {
-    //     ServletContext context = sce.getServletContext();
-    //     BasicDataSource dataSource = (BasicDataSource) context.getAttribute("dataSource");
-    //     dataSource.close();
-    // }
-
-    // @Override
-    // public default void contextInitialized(jakarta.servlet.ServletContextEvent sce) {
-    //     ServletContext context = sce.getServletContext();
-    //     BasicDataSource dataSource = new BasicDataSource();
-    //     ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-    //     ds.setUrl("jdbc:mysql://localhost:3306/sem2");
-    //     ds.setUsername("root");
-    //     ds.setPassword("1234");
-    //     ds.setInitialSize(50);
-    //     ds.setMaxTotal(100);
-
-    //     context.setAttribute("dataSource", dataSource);
-    // }
 }
