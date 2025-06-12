@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import com.example.backend.dto.AdminDto;
 import com.example.backend.model.Admin;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -25,7 +26,7 @@ public class AdminServlet extends HttpServlet {
         BasicDataSource dataSource = (BasicDataSource) getServletContext().getAttribute("dataSource");
 
         try {
-            Admin admin = mapper.readValue(req.getInputStream(), Admin.class);
+            AdminDto admin = mapper.readValue(req.getInputStream(), AdminDto.class);
 
             Connection connection = dataSource.getConnection();
             PreparedStatement statement = connection.prepareStatement(
