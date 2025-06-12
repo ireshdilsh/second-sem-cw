@@ -26,33 +26,21 @@ public class AdminServlet extends HttpServlet {
         BasicDataSource dataSource = (BasicDataSource) getServletContext().getAttribute("dataSource");
 
         try {
-            
+            Admin admin = mapper.readValue(req.getInputStream(), Admin.class);
+
+            Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                    "INSERT INTO admins (name, email, password) VALUES (?, ?, ?)");
+
+            statement.setString(1, admin.getName());
+            statement.setString(2, admin.getEmail());
+            statement.setString(3, admin.getPassword());
+
+            int rows = statement.executeUpdate();
+            resp.setContentType("application/json");
+            mapper.writeValue(resp.getWriter(), Map.of("Admin Save Success !", rows));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }   
-
-    // try {
-    // Admin data = mapper.readValue(req.getInputStream(), Admin.class);
-
-    // Connection connection = ds.getConnection();
-    // PreparedStatement statement = connection.prepareStatement(
-    // "INSERT INTO users (name, email, password) VALUES (?, ?, ?)");
-
-    // statement.setString(1, data.getName());
-    // statement.setString(2, data.getEmail());
-    // statement.setString(3, data.getPassword());
-
-    // int rows = statement.executeUpdate();
-
-    // resp.setContentType("application/json");
-    // mapper.writeValue(resp.getWriter(), Map.of("rowsAffected", rows));
-    // } catch (Exception e) {
-    // e.printStackTrace();
-    // resp.setStatus(500);
-    // mapper.writeValue(resp.getWriter(), Map.of("error", "Failed to create
-    // admin"));
-    // }
-    // }
-
 }
