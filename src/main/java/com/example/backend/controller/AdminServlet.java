@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/api/v1/admin")
 public class AdminServlet extends HttpServlet {
 
-    private 
+    private AdminModel
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
