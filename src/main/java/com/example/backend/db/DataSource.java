@@ -18,7 +18,7 @@ public class DataSource implements ServletContextListener{
         ServletContext context = sce.getServletContext();
         BasicDataSource dataSource = new BasicDataSource();
         ds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        ds.setUrl("jdbc:mysql://localhost:3306/(has Create databse Name)");
+        ds.setUrl("jdbc:mysql://localhost:3306/sem2");
         ds.setUsername("root");
         ds.setPassword("1234");
         ds.setInitialSize(50);
