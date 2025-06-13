@@ -21,7 +21,7 @@ $('#empRegisterBtn').on('click', () => {
                 text: "Employee Saved !",
                 icon: "success"
             });
-            window.location.href = '../pages/employeeDashboard.html'
+            window.location.href = '../pages/empsignin.html'
             clearFields()
         },
         error: (err) => {
