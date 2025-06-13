@@ -22,7 +22,7 @@ public class ComplaintServlet extends HttpServlet {
         try {
             ObjectMapper mapper = new ObjectMapper();
             ComplainDto dto = mapper.readValue(req.getInputStream(), ComplainDto.class);
-            model.deleteComplain(dto.getEmail(), resp, req);
+            model.deleteComplain(dto.getId(), resp, req);
         } catch (Exception e) {
             e.printStackTrace();
         }
