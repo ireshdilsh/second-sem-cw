@@ -18,6 +18,10 @@ $('#empRegisterBtn').on('click', () => {
             console.log(res);
             alert("save success")
             clearFields()
+            window.location.href = '../pages/dashboard.html'
+
+            $('#admin-section').css('display', 'none')
+            $('#employee-section').css('display', 'block')
         },
         error: (err) => {
             console.log(err);
