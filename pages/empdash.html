@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Employee Dashboard</title>
 </head>
 <body>
-    
+    <h5 id="empEmail"></h5>
+
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const email = localStorage.getItem('empEmail');
+            if (email) {
+                $('#empEmail').text(email);
+            } else {
+                $('#empEmail').text('No email found');
+            }
+        });
+    </script>
 </body>
 </html>
