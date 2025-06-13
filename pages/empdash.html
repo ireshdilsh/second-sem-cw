@@ -11,81 +11,113 @@
 </head>
 
 <body>
-    <h5 id="empEmail">
-        </h>
+    <h5 id="empEmail"></h5>
 
 
-        <h1>My Complains</h1>
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>Complains ID</th>
-                    <th>Message</th>
-                </tr>
-            </thead>
-            <tbody id="complianTableBody">
-                <!-- Dynamic rows go here -->
-            </tbody>
-        </table>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Enter Complain</label>
+        <input type="text" class="form-control" id="message" aria-describedby="emailHelp">
+    </div>
 
-        <script src="../js/jquery-3.7.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-            crossorigin="anonymous"></script>
-        <script>
-            $(document).ready(function () {
-                const email = localStorage.getItem('empEmail');
-                if (email) {
-                    $('#empEmail').text(email);
-                } else {
-                    $('#empEmail').text('No email found');
-                }
-                getAllComplains();
-            });
+    <button id="sendComplain" class="btn btn-primary">Send Complain</button>
 
-            const getAllComplains = () => {
-                const email = $('#empEmail').text().trim();
+    <h1>My Complains</h1>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Complains ID</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody id="complianTableBody">
+            <!-- Dynamic rows go here -->
+        </tbody>
+    </table>
 
-                if (!email || email === 'No email found') {
-                    console.error("Email not set.");
-                    return;
-                }
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+        crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            const email = localStorage.getItem('empEmail');
+            if (email) {
+                $('#empEmail').text(email);
+            } else {
+                $('#empEmail').text('No email found');
+            }
+            getAllComplains();
+        });
 
-                $.ajax({
-                    url: 'http://localhost:8080/backend/api/v1/getComplainByEmail',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ email: email }),
-                    success: (data) => {
-                        console.log(data);
-                        $('#complianTableBody').empty();
+        const getAllComplains = () => {
+            const email = $('#empEmail').text().trim();
 
-                        if (data.length === 0) {
-                            $('#complianTableBody').append(`<tr><td colspan="2">No complaints found.</td></tr>`);
-                        } else {
-                            data.forEach((complain) => {
-                                $('#complianTableBody').append(`
+            if (!email || email === 'No email found') {
+                console.error("Email not set.");
+                return;
+            }
+
+            $.ajax({
+                url: 'http://localhost:8080/backend/api/v1/getComplainByEmail',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ email: email }),
+                success: (data) => {
+                    console.log(data);
+                    $('#complianTableBody').empty();
+
+                    if (data.length === 0) {
+                        $('#complianTableBody').append(`<tr><td colspan="2">No complaints found.</td></tr>`);
+                    } else {
+                        data.forEach((complain) => {
+                            $('#complianTableBody').append(`
                         <tr>
                             <td>${complain.id}</td>
                             <td>${complain.message}</td>
                         </tr>
                     `);
-                            });
-                        }
-                    },
-
-                    error: (err) => {
-                        console.error(err);
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Failed to load complaints!"
                         });
                     }
-                });
-            }
+                },
 
-        </script>
+                error: (err) => {
+                    console.error(err);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Failed to load complaints!"
+                    });
+                }
+            });
+        }
+
+        $('#sendComplain').on('click', () => {
+            const apiURL = 'http://localhost:8080/backend/api/v1/complains'
+            const complain = {
+                name: $('#name').val(),
+                email: $('#empEmail').text().trim(),
+                message: $('#message').val(),
+            }
+            $.ajax({
+                url: apiURL,
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(complain),
+                success: (data) => {
+                    console.log(data);
+                    getAllComplains();
+                },
+                error: (err) => {
+                    console.error(err);
+                }
+            })
+        })
+
+    </script>
 </body>
 
 </html>
