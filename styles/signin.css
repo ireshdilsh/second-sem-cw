@@ -33,3 +33,11 @@
     display: flex;
     gap: 70px;
 }
+
+.employee{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    gap: 113px;
+}
