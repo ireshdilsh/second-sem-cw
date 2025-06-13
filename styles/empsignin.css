@@ -19,3 +19,15 @@ body{
     margin-top: 100px;
     padding: 20px 180px;
 }
+
+#sendComplain{
+    margin-bottom: 50px;
+}
+
+#title{
+    margin-bottom: 50px;
+}
+
+#name,#message{
+    width: 400px;
+}
