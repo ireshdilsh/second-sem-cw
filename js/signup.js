@@ -15,6 +15,7 @@ $('#userRegisterBtn').on('click',()=>{
     data : JSON.stringify(admin),
     success : (res)=>{
         console.log(res);
+        window.location.href = '../pages/signin.html'
     },
     error : (err)=>{
         console.log(err);
