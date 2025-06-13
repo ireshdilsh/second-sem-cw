@@ -12,11 +12,21 @@
 
 <body>
     <section id="admin-section">
-        <div class="create-employee">
-            <h1>Add New Employee</h1>
-        </div>
         <div class="complains">
             <h1>Employee Complians</h1>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Complains ID</th>
+                        <th>Name</th>
+                        <th>Message</th>
+                        <th>Email Address</th>
+                    </tr>
+                </thead>
+                <tbody id="complianTableBody">
+                    <!-- Dynamic rows go here -->
+                </tbody>
+            </table>
         </div>
     </section>
     <section id="employee-section">
