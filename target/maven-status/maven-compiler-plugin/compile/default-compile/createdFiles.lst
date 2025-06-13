@@ -4,6 +4,7 @@ com\example\backend\controller\ComplaintServlet.class
 com\example\backend\dto\EmployeeDto.class
 com\example\backend\controller\AdminServletSignin.class
 com\example\backend\db\DataSource.class
+com\example\backend\controller\GetComplainByEmailServlet.class
 com\example\backend\controller\EmpSigninServlet.class
 com\example\backend\model\ComplainModel.class
 com\example\backend\model\EmployeeModel.class
