@@ -35,9 +35,21 @@
         </div>
         <div class="complain-tbl">
             <h1>Your Complains</h1>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Complains ID</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="complianTableBodyEmp">
+                    <!-- Dynamic rows go here -->
+                </tbody>
+            </table>
         </div>
     </section>
     <script src="../js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Boostrap JS File -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
