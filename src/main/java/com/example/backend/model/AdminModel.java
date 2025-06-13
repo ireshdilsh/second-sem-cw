@@ -36,4 +36,23 @@ public class AdminModel {
         }
     }
 
+    public void signin(String email, String password, HttpServletRequest req, HttpServletResponse resp,
+            BasicDataSource dataSource, ObjectMapper mapper) {
+
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM users WHERE email = ? AND password = ?");
+
+            statement.setString(1, email);
+            statement.setString(2, password);
+
+            int rows = statement.executeUpdate();
+            resp.setContentType("application/json");
+            mapper.writeValue(resp.getWriter(), Map.of("Admin Signin Success !", rows));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

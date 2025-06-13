@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/api/v1/admin")
-public class AdminServlet extends HttpServlet {
+public class AdminServletSignup extends HttpServlet {
 
     private AdminModel model;
 
@@ -45,4 +45,6 @@ public class AdminServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+    
 }
