@@ -2,7 +2,9 @@ package com.example.backend.controller;
 
 import java.io.IOException;
 
+import com.example.backend.dto.EmployeeDto;
 import com.example.backend.model.EmployeeModel;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,7 +25,13 @@ public class EmployeeServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       
+       try {
+        ObjectMapper mapper = new ObjectMapper();
+        EmployeeDto dto = mapper.readValue(req.getInputStream(), EmployeeDto.class);
+        model.addNewEmployee(dto.getId(),dto.getName(), dto.getEmail(), dto.getContact(), resp,req);
+       } catch (Exception e) {
+        e.printStackTrace();
+       }
     }
 
     @Override
