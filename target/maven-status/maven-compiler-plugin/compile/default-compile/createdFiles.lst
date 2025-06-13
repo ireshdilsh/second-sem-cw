@@ -1,7 +1,9 @@
 com\example\backend\dto\AdminDto.class
 com\example\backend\controller\AdminServletSignup.class
+com\example\backend\dto\EmployeeDto.class
 com\example\backend\controller\AdminServletSignin.class
 com\example\backend\db\DataSource.class
+com\example\backend\model\EmployeeModel.class
 com\example\backend\CORSFilter.class
 com\example\backend\controller\EmployeeServlet.class
 com\example\backend\model\AdminModel.class
