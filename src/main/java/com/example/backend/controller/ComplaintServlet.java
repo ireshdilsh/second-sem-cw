@@ -19,7 +19,13 @@ public class ComplaintServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            ComplainDto dto = mapper.readValue(req.getInputStream(), ComplainDto.class);
+            model.deleteComplain(dto.getEmail(), resp, req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

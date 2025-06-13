@@ -57,4 +57,19 @@ public class ComplainModel {
         }
     }
 
+    public void deleteComplain(String email, HttpServletResponse resp, HttpServletRequest req) {
+       ObjectMapper mapper = new ObjectMapper();
+        BasicDataSource dataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM complains WHERE email = ?");
+            statement.setString(1, email);
+            int rows = statement.executeUpdate();
+            resp.setContentType("application/json");
+            mapper.writeValue(resp.getWriter(), Map.of("Complain Delete Success !", rows));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
