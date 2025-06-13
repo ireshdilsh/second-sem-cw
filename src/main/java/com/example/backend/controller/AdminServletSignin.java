@@ -30,7 +30,7 @@ public class AdminServletSignin extends HttpServlet {
             ObjectMapper mapper = new ObjectMapper();
             BasicDataSource dataSource = (BasicDataSource) getServletContext().getAttribute("dataSource");
             AdminDto adminDto = mapper.readValue(req.getInputStream(), AdminDto.class);
-            model.signin(adminDto.getEmail(), adminDto.getPassword(), req, resp, dataSource, mapper);
+            model.signin(adminDto.getEmail(), adminDto.getPassword(), req, resp, dataSource);
         } catch (Exception e) {
             e.printStackTrace();
         }

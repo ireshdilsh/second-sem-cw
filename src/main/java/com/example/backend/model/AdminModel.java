@@ -1,7 +1,9 @@
 package com.example.backend.model;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Map;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -37,7 +39,9 @@ public class AdminModel {
     }
 
     public void signin(String email, String password, HttpServletRequest req, HttpServletResponse resp,
-            BasicDataSource dataSource, ObjectMapper mapper) {
+            BasicDataSource dataSource) {
+
+        ObjectMapper mapper = new ObjectMapper();
 
         try {
             Connection connection = dataSource.getConnection();
@@ -47,9 +51,24 @@ public class AdminModel {
             statement.setString(1, email);
             statement.setString(2, password);
 
-            int rows = statement.executeUpdate();
+            ResultSet resultSet = statement.executeQuery();
             resp.setContentType("application/json");
-            mapper.writeValue(resp.getWriter(), Map.of("Admin Signin Success !", rows));
+            PrintWriter out = resp.getWriter();
+
+            if (resultSet.next()) {
+                resp.setStatus(HttpServletResponse.SC_OK);
+                mapper.writeValue(out, Map.of(
+                        "code", "200",
+                        "status", "Login Success",
+                        "message", "You have been logged in successfully"));
+            } else {
+                resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                mapper.writeValue(out, Map.of(
+                        "code", "401",
+                        "status", "Login Failed",
+                        "message", "You have been logged in failed"));
+            }
+            // mapper.writeValue(resp.getWriter(), Map.of("Admin Signin Success !", rows));
         } catch (Exception e) {
             e.printStackTrace();
         }
