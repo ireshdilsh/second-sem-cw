@@ -19,6 +19,7 @@ $('#userRegisterBtn').on('click', () => {
             window.location.href = '../pages/signin.html'
         },
         error: (err) => {
+            alert(err)
             console.log(err);
         }
     })
