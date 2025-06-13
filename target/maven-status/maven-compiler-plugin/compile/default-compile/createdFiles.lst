@@ -1,5 +1,6 @@
 com\example\backend\dto\AdminDto.class
 com\example\backend\controller\AdminServlet.class
 com\example\backend\CORSFilter.class
+com\example\backend\controller\EmployeeServlet.class
 com\example\backend\db\DataSource.class
 com\example\backend\model\AdminModel.class
