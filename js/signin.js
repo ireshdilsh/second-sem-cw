@@ -13,6 +13,7 @@ $('#loginBtn').on('click', () => {
         data: JSON.stringify(loginData),
         success: (res) => {
             console.log(res);
+            // localStorage.setItem('loggedInEmail', loginData.email);
             clearFields()
             window.location.href = '../pages/dashboard.html'
         },
