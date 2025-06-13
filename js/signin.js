@@ -1,6 +1,6 @@
 $('#loginBtn').on('click', () => {
 
-    const API_URL = ''
+    const API_URL = 'http://localhost:8080/backend/api/v1/admin/signin'
     const loginData = {
         email: $('#email').val(),
         password: $('#password').val()
@@ -17,6 +17,7 @@ $('#loginBtn').on('click', () => {
             window.location.href = '../pages/dashboard.html'
         },
         error: (err) => {
+            alert('Something Wrong')
             console.log(err);
         }
     })
