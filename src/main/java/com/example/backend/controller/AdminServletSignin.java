@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/api/v2/admin/signin")
+@WebServlet("/api/v1/admin/signin")
 public class AdminServletSignin extends HttpServlet {
 
     private AdminModel model;
