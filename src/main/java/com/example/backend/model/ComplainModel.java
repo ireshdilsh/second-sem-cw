@@ -41,10 +41,10 @@ public class ComplainModel {
         try {
             Connection connection = dataSource.getConnection();
             ResultSet rst = connection.prepareStatement("SELECT * FROM complains").executeQuery();
-            List<Map<String,Object>>list = new ArrayList<>();
+            List<Map<String, Object>> list = new ArrayList<>();
             while (rst.next()) {
-                Map<String,Object>map = new java.util.HashMap<>();
-                map.put("id",rst.getInt("id"));
+                Map<String, Object> map = new java.util.HashMap<>();
+                map.put("id", rst.getInt("id"));
                 map.put("name", rst.getString("name"));
                 map.put("email", rst.getString("email"));
                 map.put("message", rst.getString("message"));
@@ -59,19 +59,41 @@ public class ComplainModel {
     }
 
     public void deleteComplain(int id, HttpServletResponse resp, HttpServletRequest req) {
-       ObjectMapper mapper = new ObjectMapper();
-    BasicDataSource dataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
+        ObjectMapper mapper = new ObjectMapper();
+        BasicDataSource dataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
 
-    try (Connection connection = dataSource.getConnection()) {
-        PreparedStatement statement = connection.prepareStatement("DELETE FROM complains WHERE id = ?");
-        statement.setInt(1, id);
-        int rows = statement.executeUpdate();
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM complains WHERE id = ?");
+            statement.setInt(1, id);
+            int rows = statement.executeUpdate();
 
-        resp.setContentType("application/json");
-        mapper.writeValue(resp.getWriter(), Map.of("deleted", rows));
-    } catch (Exception e) {
-        e.printStackTrace();
+            resp.setContentType("application/json");
+            mapper.writeValue(resp.getWriter(), Map.of("deleted", rows));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public void getComplainsByEmail(String email, HttpServletResponse resp, HttpServletRequest req) {
+        ObjectMapper mapper = new ObjectMapper();
+        BasicDataSource dataSource = (BasicDataSource) req.getServletContext().getAttribute("dataSource");
+        try {
+            Connection connection = dataSource.getConnection();
+            PreparedStatement stmt = connection.prepareStatement("SELECT * FROM complains WHERE email=?");
+            stmt.setString(1, email);
+            ResultSet rst = stmt.executeQuery();
+            List<Map<String, Object>> list = new ArrayList<>();
+            while (rst.next()) {
+                Map<String, Object> map = new java.util.HashMap<>();
+                map.put("id", rst.getInt("id"));
+                map.put("message", rst.getString("message"));
+                list.add(map);
+            }
+            resp.setContentType("application/json");
+            mapper.writeValue(resp.getWriter(), list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
