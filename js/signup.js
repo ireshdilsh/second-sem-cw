@@ -16,10 +16,19 @@ $('#userRegisterBtn').on('click', () => {
         success: (res) => {
             console.log(res);
             fieldsCler()
+            Swal.fire({
+                title: "Good job!",
+                text: "Account Created !",
+                icon: "success"
+            });
             window.location.href = '../pages/signin.html'
         },
         error: (err) => {
-            alert(err)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+            });
             console.log(err);
         }
     })

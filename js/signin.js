@@ -15,12 +15,13 @@ $('#loginBtn').on('click', () => {
             console.log(res);
             clearFields()
             window.location.href = '../pages/dashboard.html'
-
-            $('#admin-section').css('display', 'block')
-            $('#employee-section').css('display', 'none')
         },
         error: (err) => {
-            alert('Something Wrong')
+           Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+            });
             console.log(err);
         }
     })

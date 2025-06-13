@@ -16,16 +16,21 @@ $('#empRegisterBtn').on('click', () => {
         data: JSON.stringify(employee),
         success: (res) => {
             console.log(res);
-            alert("save success")
+            Swal.fire({
+                title: "Good job!",
+                text: "Employee Saved !",
+                icon: "success"
+            });
             clearFields()
-            window.location.href = '../pages/dashboard.html'
-
-            $('#admin-section').css('display', 'none')
-            $('#employee-section').css('display', 'block')
+            window.location.href = '../pages/employeeDashboard.html'
         },
         error: (err) => {
             console.log(err);
-            alert(err.responseJSON.message)
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Something went wrong!"
+            });
         }
     })
 })
