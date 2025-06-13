@@ -6,7 +6,7 @@ $('#empRegisterBtn').on('click', () => {
         id: $('#id').val(),
         name: $('#name').val(),
         email: $('#email').val(),
-        password: $('#contact').val()
+        contact: $('#contact').val()
     }
 
     $.ajax({
