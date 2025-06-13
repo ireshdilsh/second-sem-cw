@@ -68,7 +68,6 @@ public class AdminModel {
                         "status", "Login Failed",
                         "message", "You have been logged in failed"));
             }
-            // mapper.writeValue(resp.getWriter(), Map.of("Admin Signin Success !", rows));
         } catch (Exception e) {
             e.printStackTrace();
         }
