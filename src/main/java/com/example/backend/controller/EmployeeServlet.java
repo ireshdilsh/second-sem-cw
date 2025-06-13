@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/api/v1/employee")
-public class EmployeeServlet extends HttpServlet{
+public class EmployeeServlet extends HttpServlet {
 
     private EmployeeModel model;
     private ComplainModel complainModel;
@@ -24,8 +24,7 @@ public class EmployeeServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             ObjectMapper mapper = new ObjectMapper();
-             ComplainDto dto = mapper.readValue(req.getInputStream(), ComplainDto.class);
-            // model.getAllEmployeeByE(req,resp);
+            ComplainDto dto = mapper.readValue(req.getInputStream(), ComplainDto.class);
             complainModel.getComplainsByEmail(dto.getEmail(), resp, req);
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,19 +33,19 @@ public class EmployeeServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       try {
-        ObjectMapper mapper = new ObjectMapper();
-        EmployeeDto dto = mapper.readValue(req.getInputStream(), EmployeeDto.class);
-        model.addNewEmployee(dto.getId(),dto.getName(), dto.getEmail(), dto.getContact(), resp,req);
-       } catch (Exception e) {
-        e.printStackTrace();
-       }
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            EmployeeDto dto = mapper.readValue(req.getInputStream(), EmployeeDto.class);
+            model.addNewEmployee(dto.getId(), dto.getName(), dto.getEmail(), dto.getContact(), resp, req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void init() throws ServletException {
-       model = new EmployeeModel();
-       complainModel = new ComplainModel();
+        model = new EmployeeModel();
+        complainModel = new ComplainModel();
     }
-    
+
 }
