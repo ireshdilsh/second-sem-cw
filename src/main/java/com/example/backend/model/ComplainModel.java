@@ -51,8 +51,10 @@ public class ComplainModel {
                 list.add(map);
             }
             ObjectMapper mapper = new ObjectMapper();
+            // resp.setCharacterEncoding("UTF-8");
             resp.setContentType("application/json");
             mapper.writeValue(resp.getWriter(), list);
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
