@@ -89,5 +89,3 @@
 </body>
 
 </html>
-
-<!-- pem madirawe jeewithe , mahamaya,senehasa pawa-->
